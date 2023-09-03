@@ -50,7 +50,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - id: artifact
         name: Download Artifact
         uses: actions/download-artifact@master
@@ -81,6 +81,7 @@ jobs:
         uses: docker/build-push-action@v2
         name: Tag Docker image and push to Google Artifact Registry
         with:
+          context: .
           push: true
           tags: |
               us-east1-docker.pkg.dev/hurban-lab/store/product:${{ steps.get-tag.outputs.short_ref }}
