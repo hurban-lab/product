@@ -36,7 +36,7 @@ jobs:
         name: Publish Artifact
         uses: actions/upload-artifact@master
         with:
-          name: auth-service-artifact
+          name: product-artifact
           path: ./target/*.jar
   deploy:
     permissions:
@@ -55,7 +55,7 @@ jobs:
         name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: auth-service-artifact
+          name: product-artifact
           path: ./target
       - id: authenticate-gcp
         name: Authenticate with Google Cloud
@@ -71,7 +71,6 @@ jobs:
         with:
           registry: us-east1-docker.pkg.dev
           username: oauth2accesstoken
-          # Get the acces token from the previous step.
           password: ${{ steps.auth.outputs.access_token }}
 
       - name: Get tag
