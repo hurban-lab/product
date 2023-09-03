@@ -71,7 +71,7 @@ jobs:
         with:
           registry: us-east1-docker.pkg.dev
           username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          password: ${{ steps.authenticate-gcp.outputs.access_token }}
 
       - name: Get tag
         id: get-tag
