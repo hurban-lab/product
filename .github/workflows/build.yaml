@@ -45,8 +45,8 @@ jobs:
     name: Deploy Docker Image
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ false }}  # disable for now
-    #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    #if: ${{ false }}  # disable for now
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - id: checkout
         name: Checkout Repository
@@ -83,8 +83,6 @@ jobs:
         name: Tag Docker image and push to Google Artifact Registry
         with:
           push: true
-          #TODO replace variable here
           tags: |
-              us-east1-docker.pkg.dev/<Project-ID>/<Registry-Repo>/<Image-Name>:${{ steps.get-tag.outputs.short_ref }}
-              us-east1-docker.pkg.dev/<Project-ID>/<Registry-Repo>/<Image-Name>:latest
-
+              us-east1-docker.pkg.dev/hurban-lab/store/product:${{ steps.get-tag.outputs.short_ref }}
+              us-east1-docker.pkg.dev/hurban-lab/store/product:latest
