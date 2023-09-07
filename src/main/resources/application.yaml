@@ -1,3 +1,7 @@
 spring:
   application:
     name: product-service
+  main:
+    banner-mode: off
+  profiles:
+    active: local
